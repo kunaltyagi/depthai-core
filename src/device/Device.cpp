@@ -283,6 +283,9 @@ void Device::init(const Pipeline& pipeline, bool embeddedMvcmd, bool usb2Mode, c
 
     // Mark the OpenVINO version and serialize the pipeline
     pipeline.serialize(schema, assets, assetStorage, version);
+    std::cout << "Device: " << pipeline.getNodeMap().size() << "\n";
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::cout << "Device: " << pipeline.getNodeMap().size() << "\n";
 
     spdlog::debug("Device - pipeline serialized, OpenVINO version: {}", OpenVINO::getVersionName(version));
 
@@ -509,6 +512,7 @@ void Device::init(const Pipeline& pipeline, bool embeddedMvcmd, bool usb2Mode, c
         // set max data size, for more verbosity
         inputQueueMap[xlinkIn->getStreamName()]->setMaxDataSize(xlinkIn->getMaxDataSize());
     }
+    std::cout << "Device: " << pipeline.getNodeMap().size() << "\n";
     for(const auto& kv : pipeline.getNodeMap()) {
         const auto& node = kv.second;
         const auto& xlinkOut = std::dynamic_pointer_cast<const node::XLinkOut>(node);

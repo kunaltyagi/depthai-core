@@ -83,6 +83,7 @@ dai_add_example(color_camera_control src/color_camera_control_example.cpp)
 
 # System information example
 dai_add_example(system_information src/system_information_example.cpp)
+dai_add_example(thread_issue src/thread_issue.cpp)
 
 # Device getQueueEvent example
 dai_add_example(device_queue_event src/device_queue_event_example.cpp)
