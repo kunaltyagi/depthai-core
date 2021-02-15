@@ -41,7 +41,6 @@ int main(){
     // properties
     sysLog->setRate(1.0f); // 1 hz updates
     xout->setStreamName("sysinfo");
-    xout2->setStreamName("sysinfo2");
 
     // links
     sysLog->out.link(xout->input);
@@ -49,6 +48,7 @@ int main(){
     std::thread setup(setupDevice, pipeline);
     // @TODO modify pipeline here, print stuff as well
     auto xout2 = pipeline.create<dai::node::XLinkOut>();
+    xout2->setStreamName("sysinfo2");
     sysLog->out.link(xout2->input);
     std::cout << "Main: " << pipeline.getNodeMap().size() << "\n";
     setup.join();
