@@ -46,6 +46,8 @@ int main(){
     sysLog->out.link(xout->input);
 
     std::thread setup(setupDevice, pipeline);
+    std::cout << "Main: " << pipeline.getNodeMap().size() << "\n";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     // @TODO modify pipeline here, print stuff as well
     auto xout2 = pipeline.create<dai::node::XLinkOut>();
     xout2->setStreamName("sysinfo2");
